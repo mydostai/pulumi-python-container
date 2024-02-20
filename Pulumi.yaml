@@ -1,0 +1,10 @@
+name: pulumi-python-container
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: A Python program to deploy a containerized service on Azure
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: ""
