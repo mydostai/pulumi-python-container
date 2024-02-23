@@ -1,3 +1,10 @@
+name: Deploy to Azure
+
+on: push
+
+permissions:
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
