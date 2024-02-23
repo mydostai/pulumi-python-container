@@ -13,7 +13,7 @@ cpu = config.get_int("cpu", 1)
 memory = config.get_int("memory", 2)
 
 # Create a resource group for the container registry.
-resource_group = resources.ResourceGroup("resource-group")
+resource_group = resources.ResourceGroup("rg-pulumi-testc49dabc7")
 
 # Create a container registry.
 registry = containerregistry.Registry(
@@ -39,7 +39,9 @@ registry_password = credentials.apply(lambda creds: creds.passwords[0].value)
 # Create a container image for the service.
 image = docker.Image(
     "image",
-    image_name=pulumi.Output.concat(registry.login_server, f"/{image_name}:{image_tag}"),
+    image_name=pulumi.Output.concat(
+        registry.login_server, f"/{image_name}:{image_tag}"
+    ),
     build=docker.DockerBuildArgs(
         context=app_path,
         platform="linux/amd64",
